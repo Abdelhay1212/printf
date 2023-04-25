@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	int i;
-	char *str, *c;
+	char *str, c;
 	va_list args;
 
 	if (format == NULL)
@@ -33,9 +33,9 @@ int _printf(const char *format, ...)
 			switch (format[i + 1])
 			{
 				case 'c':
-					c = va_arg(args, char*);
-					if (*c != NULL)
-						putchar(format[i]);
+					c = va_arg(args, int);
+					if (c != '\0')
+						putchar(c);
 					else
 						putchar(' ');
 					break;
