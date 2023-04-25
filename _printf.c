@@ -10,25 +10,22 @@
 int _printf(const char *format, ...)
 {
 	int i;
-	char *str;
+	char *str, *c;
 	va_list args;
-	char percente;
-	char c;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
-	percente = '%';
 	i = 0;
 
 	while (format[i])
 	{
 		if (format[i] != '%')
-			write(STDOUT_FILENO, &format[i], sizeof(format[i]));
+			putchar(format[i]);
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
-			write(STDOUT_FILENO, &percente, sizeof(percente));
+			putchar('%');
 			i++;
 		}
 		else
@@ -36,16 +33,21 @@ int _printf(const char *format, ...)
 			switch (format[i + 1])
 			{
 				case 'c':
-					c = va_arg(args, int);
-					write(STDOUT_FILENO, &c, sizeof(c));
+					c = va_arg(args, char*);
+					if (*c != NULL)
+						putchar(format[i]);
+					else
+						putchar(' ');
 					break;
 				case 's':
 					str = va_arg(args, char*);
+					if (str == NULL)
+						str = "(null)";
 					for (; *str; str++)
-						write(STDOUT_FILENO, str, sizeof(*str));
+						putchar(*str);
 					break;
 				default:
-					write(STDOUT_FILENO, &format[i], sizeof(format[i]));
+					putchar(format[i]);
 					i--;
 					break;
 			}
