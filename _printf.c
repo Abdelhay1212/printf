@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			switch(format[i + 1])
+			switch (format[i + 1])
 			{
 				case 'c':
 					c = va_arg(args, int);
@@ -43,6 +43,10 @@ int _printf(const char *format, ...)
 					str = va_arg(args, char*);
 					for (; *str; str++)
 						write(STDOUT_FILENO, str, sizeof(*str));
+					break;
+				default:
+					write(STDOUT_FILENO, &format[i], sizeof(format[i]));
+					i--;
 					break;
 			}
 			i++;
