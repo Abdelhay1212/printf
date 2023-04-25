@@ -13,6 +13,7 @@ int _printf(const char *format, ...)
 	char *str;
 	va_list args;
 	char percente;
+	char c;
 
 	if (format == NULL)
 		return (-1);
@@ -35,8 +36,8 @@ int _printf(const char *format, ...)
 			switch(format[i + 1])
 			{
 				case 'c':
-					char x = va_arg(args, int);
-					write(STDOUT_FILENO, &x, sizeof(x));
+					c = va_arg(args, int);
+					write(STDOUT_FILENO, &c, sizeof(c));
 					break;
 				case 's':
 					str = va_arg(args, char*);
