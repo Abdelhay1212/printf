@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /**
   * print_string - print strings
   * @str: pointer to string

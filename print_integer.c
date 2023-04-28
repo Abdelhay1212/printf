@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /**
  * print_integer - prints intgeres
  * @integer: integer to be printed

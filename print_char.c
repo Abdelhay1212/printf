@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /**
   * print_char - prints characters
   * @c: character

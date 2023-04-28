@@ -9,12 +9,14 @@
   */
 int print_hex(unsigned int n, int count, char charType)
 {
+	int digit;
+
 	if (n >= 16)
 	{
 		count = print_hex(n / 16, count, charType);
 	}
 
-	int digit = n % 16;
+	digit = n % 16;
 
 	if (digit < 10)
 	{
